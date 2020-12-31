@@ -1,0 +1,38 @@
+<ion-card class="card ion-no-padding ion-no-margin ion-margin-bottom ion-no-border">
+  <ion-item lines="none">
+    <ion-avatar slot="start">
+      <img [src]="post.avatar">
+    </ion-avatar>
+    <ion-label>
+      <h2>
+        {{post.username}}
+      </h2>
+      <p>{{post.location}}</p>
+    </ion-label>
+    <ion-icon slot="end" name="ellipsis-vertical-outline" (click)="showOptions()"></ion-icon>
+  </ion-item>
+  <img class="card-img" [src]="post.imageUrl" />
+  <ion-item lines="none">
+    <ion-icon (click)="onToggle('liked')" [color]="post.liked ? 'danger' : 'medium'"
+      [name]="post.liked ? 'heart' : 'heart-outline'"></ion-icon>
+    <ion-icon color="black" class="ion-margin-horizontal" name="chatbubble-outline" [routerLink]="['/comments']"></ion-icon>
+    <ion-icon color="black" name="paper-plane-outline" (click)="sharePost()"></ion-icon>
+    <ion-icon (click)="onToggle('saved')" [color]="post.saved ? 'black' : 'medium'" slot="end"
+      [name]="post.saved ? 'bookmark' : 'bookmark-outline'"></ion-icon>
+  </ion-item>
+  <hr class="ion-no-margin ion-no-padding custom-hr">
+  <div class="ion-padding">
+    <strong>20 likes</strong>
+  </div>
+  <div class="ion-padding-start">
+    <p class="ion-color-dark">
+      <b class="ion-margin-end">{{post.username}}</b> {{post.caption}}
+    </p>
+  </div>
+  <ion-note class="ion-padding-start ion-text-md" [routerLink]="['/comments']">
+    View all comments...<br>
+  </ion-note>
+  <ion-note class="ion-padding-start ion-text-sm">
+    {{post.createdAt | dateAgo}}
+  </ion-note>
+</ion-card>

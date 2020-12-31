@@ -1,0 +1,31 @@
+<div class="comment-item" [ngClass]="{'reply': isReply}">
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="auto">
+      <ion-avatar class="avatar-sm" ngClass="isReply ? 'avatar-xs' : 'avatar-sm'">
+        <img [src]="comment.avatar" alt="">
+      </ion-avatar>
+    </ion-col>
+    <ion-col>
+      <div>
+        <span class="username">{{comment.user}}</span>
+        {{comment.text}}
+        <ng-container *ngIf="comment.tags">
+          <a href="" class="hash-tag" *ngFor="let tag of comment.tags">#{{tag}}</a>
+        </ng-container>
+      </div>
+      <div class="comment-actions">
+        <span class="action-item">{{ comment.createdAt | dateAgo}}</span>
+        <span class="action-item" *ngIf="comment.likes"><strong>{{comment.likes}} likes</strong></span>
+        <span class="action-item"><strong>Reply</strong></span>
+      </div>
+    </ion-col>
+    <ion-col size="auto">
+      <ion-icon (click)="toggleLike()" [color]="comment.liked ? 'danger' : 'medium'"
+        [name]="comment.liked ? 'heart' : 'heart-outline'"></ion-icon>
+    </ion-col>
+  </ion-row>
+  
+  <div class="replies" *ngIf="comment.replies.length">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Comments</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content>
+  <app-comment [comment]="comment" *ngFor="let comment of comments; trackBy:trackByIndex">
+    <app-comment [comment]="reply" [isReply]="true" *ngFor="let reply of comment.replies;trackBy:trackByIndex">
+    </app-comment>
+  </app-comment>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-avatar class="avatar-sm" slot="start">
+        <img [src]="userAvatar" alt="">
+      </ion-avatar>
+    </ion-buttons>
+
+    <ion-input placeholder="Add a comment..." [(ngModel)]="commentText" (keyup.enter)="addComment()"></ion-input>
+  </ion-toolbar>
+</ion-footer>

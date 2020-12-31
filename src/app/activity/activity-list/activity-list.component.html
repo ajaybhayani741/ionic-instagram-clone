@@ -1,0 +1,24 @@
+<div class="activity-group" *ngFor="let activityGroup of activities; trackBy:trackByIndex()">
+    <ion-list-header class="list-header-custom">
+        {{activityGroup.dateTime}}
+    </ion-list-header>
+    <ion-row class="activity-item" *ngFor="let activity of activityGroup.list; trackBy:trackByIndex()">
+        <ion-col size="auto">
+            <ion-avatar class="avatar-md">
+                <img [src]="activity.postImage" alt="">
+            </ion-avatar>
+        </ion-col>
+        <ion-col>
+            <strong>{{activity.user}}</strong> {{activity.description}}
+            <span class="text-muted"> {{ activity.createdAt | dateAgo }}</span>
+        </ion-col>
+        <ion-col size="auto">
+            <ion-button size="small" color="secondary" *ngIf="activity.type === 'follow'">
+                Follow
+            </ion-button>
+            <ion-thumbnail class="avatar-md" *ngIf="activity.type === 'like'">
+                <img [src]="activity.postImage" alt="">
+            </ion-thumbnail>
+        </ion-col>
+    </ion-row>
+</div>

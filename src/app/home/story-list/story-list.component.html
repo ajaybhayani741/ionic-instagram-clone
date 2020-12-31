@@ -1,0 +1,9 @@
+<div class="story" scrollX="true">
+  <div class="story_scroll" *ngFor="let story of stories;trackBy: trackByIndex">
+    <div class="story_img_bg">
+      <img  class="story_img" [src]="story.img">
+      <!-- <ion-img class="ion-no-margin ion-no-padding story_img" [src]="story.img"></ion-img> -->
+    </div>
+    <p no-margin no-padding text-center class="story_text">{{ story.user_name }}</p>
+  </div>
+</div>
